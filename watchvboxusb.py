@@ -31,13 +31,11 @@ def exclude_devices(devices, exclude_regexes):
     devices_to_keep = []
     for uuid, device in devices.items():
         logger.debug("checking %r for exclusion", device)
-        match = False
         for regex in exclude_regexes:
             if re.search(regex, device['Product'], re.IGNORECASE):
                 logger.debug("%r matches %r so it's excluded", device, regex)
-                match = True
                 break
-        if not match:
+        else:
             devices_to_keep.append((uuid, device)) 
     return dict(devices_to_keep) 
 
