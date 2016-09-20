@@ -16,14 +16,14 @@ def get_usb_devices():
     devices = {}
     device = {}
     for line in lines[2:]:
-        match = re.match(r"^([^:]+):\s*(.*)$", line)
-        if match is None:
-            devices[device['UUID']] = device
-            device = {}
-        else:
+        if line:
+            match = re.match(r"^([^:]+):\s*(.*)$", line)
             key = match.group(1)
             value = match.group(2)
             device[key] = value
+        else:
+            devices[device['UUID']] = device
+            device = {}
     return devices
 
 
