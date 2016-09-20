@@ -41,7 +41,7 @@ def exclude_devices(devices, exclude_regexes):
 
 
 def attach_device_to_guest(device):
-    """Device can either be a UUID or a devict dict"""
+    """Device can either be a UUID or a device dict"""
     try:
         uuid = device['UUID']
     except TypeError:
