@@ -26,4 +26,5 @@ zenity --progress \
 --title="$TITLE" \
 --percentage=0 \
 --auto-close \
+--no-cancel \
 --auto-kill
