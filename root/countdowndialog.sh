@@ -28,3 +28,7 @@ zenity --progress \
 --auto-close \
 --no-cancel \
 --auto-kill
+
+# Note: you can ignore this warning:
+# Gtk-Message: GtkDialog mapped without a transient parent. This is discouraged.  killing dialog
+# It's related to: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=785691
