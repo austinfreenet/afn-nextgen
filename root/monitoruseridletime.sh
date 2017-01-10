@@ -1,5 +1,8 @@
 #!/bin/bash
 
+export DISPLAY=:0.0
+export XAUTHORITY=/home/user/.Xauthority
+
 while [ $# -gt 0 ]; do
 	case $1 in
 		-t | --timeout )
@@ -29,8 +32,8 @@ fi
 while true; do
 	if [ $(($(xprintidle) / 1000)) -gt $IDLEBEFOREWARN ]; then
 		if logoutwarningdialog.sh $WARNTIME; then
-			# we should logout
-			echo "logout!"
+			echo "we should logout"
+			exit 0
 		fi
 	fi
 	sleep 1
