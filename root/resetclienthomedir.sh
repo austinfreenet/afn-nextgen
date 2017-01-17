@@ -13,4 +13,4 @@ if ! [ -e "$CLIENT_HOME" ]; then
 	exit 2
 fi
 
-rsync -a $GOLD_COPY/ $CLIENT_HOME/
+rsync -a --delete $GOLD_COPY/ $CLIENT_HOME/
