@@ -11,8 +11,10 @@ while true; do
 	echo "starting client session"
 	startclientsession.sh
 	sleep 10 # todo replace with something more robust
+	echo "waiting for client to start"
+	waitforclienttostart.sh
 	echo "monitoring user idle time"
-	monitoruseridletime.sh -t 30 -w 10
+	monitoruseridletime.sh -t 60 -w 30
 	echo "logging out client"
 	logoutclient.sh
 	sleep 10
