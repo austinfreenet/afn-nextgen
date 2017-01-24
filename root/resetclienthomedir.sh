@@ -19,6 +19,7 @@ if ! [ -e "$CLIENT_HOME" ]; then
 	exit 2
 fi
 
+pkill -9 -u user
 if mount | grep $CLIENT_HOME | grep aufs; then
 	umount $CLIENT_HOME
 fi

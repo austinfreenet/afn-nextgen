@@ -1,4 +1,4 @@
 #!/bin/bash
 
-#pkill -u user
 service lightdm stop
+pkill -9 -u user
