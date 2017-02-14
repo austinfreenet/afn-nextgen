@@ -14,7 +14,7 @@ while true; do
 	echo "waiting for client to start"
 	waitforclienttostart.sh
 	echo "monitoring user idle time"
-	monitoruseridletime.sh -t 60 -w 30
+	monitoruseridletime.sh -t 300 -w 60
 	echo "logging out client"
 	logoutclient.sh
 	sleep 10
