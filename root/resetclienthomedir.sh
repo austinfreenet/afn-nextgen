@@ -20,7 +20,7 @@ if ! [ -e "$CLIENT_HOME" ]; then
 fi
 
 pkill -9 -u user
-if mount | grep $CLIENT_HOME | grep aufs; then
+if mount | grep $CLIENT_HOME | grep aufs > /dev/null; then
 	umount $CLIENT_HOME
 fi
 find $OVERLAY/ -mindepth 1 -delete
