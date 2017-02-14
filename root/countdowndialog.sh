@@ -27,7 +27,8 @@ zenity --progress \
 --percentage=0 \
 --auto-close \
 --no-cancel \
---auto-kill
+--auto-kill \
+--window-icon=question 2>&1 | grep -v "mapped without a transient parent"
 
 # Note: you can ignore this warning:
 # Gtk-Message: GtkDialog mapped without a transient parent. This is discouraged.  killing dialog
