@@ -31,10 +31,12 @@ if [ $IDLEBEFOREWARN -lt 0 ]; then
 fi
 while true; do
 	if [ $(($(xprintidle) / 1000)) -gt $IDLEBEFOREWARN ]; then
+		sudo -u user VBoxManage controlvm "Windows 7" pause
 		if logoutwarningdialog.sh $WARNTIME; then
 			echo "we should logout"
 			exit 0
 		fi
+		sudo -u user VBoxManage controlvm "Windows 7" resume
 	fi
 	sleep 1
 done
