@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import sys
+import os
 import logging
 import re
 import subprocess
@@ -46,8 +47,11 @@ def attach_device_to_guest(device):
         uuid = device['UUID']
     except TypeError:
         uuid = device
+    vm_name = os.environ['VMNAME']
     try:
-        subprocess.check_output(['VBoxManage', 'controlvm', 'Windows 7', 'usbattach', uuid], stderr=subprocess.STDOUT)
+        subprocess.check_output(['VBoxManage', 'controlvm', vm_name,
+                                 'usbattach', uuid],
+                                stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError, e:
         if e.returncode == 1 and "already captured by the virtual machine" in e.output:
             logger.warn("%s was already captured", device)

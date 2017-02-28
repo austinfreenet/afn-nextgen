@@ -1,3 +1,3 @@
 #!/bin/bash
 
-pgrep -f 'VirtualBox --startvm Windows 7'
+pgrep -f "VirtualBox --startvm $VMNAME"

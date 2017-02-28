@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export DISPLAY=:0.0
-export XAUTHORITY=/home/user/.Xauthority
+export XAUTHORITY=/home/$CLIENTUSER/.Xauthority
 
 while [ $# -gt 0 ]; do
 	case $1 in
@@ -31,12 +31,12 @@ if [ $IDLEBEFOREWARN -lt 0 ]; then
 fi
 while true; do
 	if [ $(($(xprintidle) / 1000)) -gt $IDLEBEFOREWARN ]; then
-		sudo -u user VBoxManage controlvm "Windows 7" pause
+		sudo -u $CLIENTUSER VBoxManage controlvm "$VMNAME" pause
 		if logoutwarningdialog.sh $WARNTIME; then
 			echo "we should logout"
 			exit 0
 		fi
-		sudo -u user VBoxManage controlvm "Windows 7" resume
+		sudo -u $CLIENTUSER VBoxManage controlvm "$VMNAME" resume
 	fi
 	sleep 1
 done

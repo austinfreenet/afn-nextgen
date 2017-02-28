@@ -1,5 +1,8 @@
 #!/bin/bash
 
+export VMNAME="Windows 7"
+export CLIENTUSER="user"
+
 # shutdown any existing client session
 if isclientsessionrunning.sh; then
 	logoutclient.sh
