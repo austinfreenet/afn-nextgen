@@ -6,7 +6,6 @@ export CLIENTUSER="user"
 # shutdown any existing client session
 if isclientsessionrunning.sh; then
 	logoutclient.sh
-	sleep 10
 fi
 
 while true; do
@@ -21,5 +20,4 @@ while true; do
 	monitoruseridletime.sh -t 300 -w 60
 	echo "logging out client"
 	logoutclient.sh
-	sleep 10
 done

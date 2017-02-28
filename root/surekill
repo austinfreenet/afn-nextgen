@@ -1,0 +1,19 @@
+#!/bin/bash
+
+OURPID=$$
+
+MAXTRIES=12
+
+PIDS=$(pgrep "$@" | grep -v $OURPID)
+if [ -z "$PIDS" ]; then
+	exit 1
+fi
+
+COUNT=0
+kill $PIDS > /dev/null 2>&1
+while pgrep "$@" | grep -v $OURPID> /dev/null && [ $COUNT -lt $MAXTRIES ]; do
+	kill $PIDS > /dev/null 2>&1
+	COUNT=$(($COUNT+1))
+	sleep 0.25
+done
+kill -9 $PIDS > /dev/null 2>&1
