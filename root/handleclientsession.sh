@@ -3,6 +3,7 @@
 # shutdown any existing client session
 if isclientsessionrunning.sh; then
 	logoutclient.sh
+	sleep 10
 fi
 
 while true; do
