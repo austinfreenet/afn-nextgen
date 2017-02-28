@@ -30,7 +30,13 @@ if [ $IDLEBEFOREWARN -lt 0 ]; then
 	exit 1
 fi
 while true; do
-	if [ $(($(xprintidle) / 1000)) -gt $IDLEBEFOREWARN ]; then
+	IDLETIME=$(xprintidle)
+	if [ $? -ne 0 ]; then
+		echo "get idle time failed"
+		echo "we should logout"
+		exit 0
+	fi
+	if [ $(($IDLETIME / 1000)) -gt $IDLEBEFOREWARN ]; then
 		sudo -u $CLIENTUSER VBoxManage controlvm "$VMNAME" pause
 		if logoutwarningdialog.sh $WARNTIME; then
 			echo "we should logout"
