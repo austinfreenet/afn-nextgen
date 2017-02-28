@@ -13,7 +13,6 @@ while true; do
 	resetclienthomedir.sh
 	echo "starting client session"
 	startclientsession.sh
-	sleep 10 # todo replace with something more robust
 	echo "waiting for client to start"
 	waitforclienttostart.sh
 	echo "monitoring user idle time"
