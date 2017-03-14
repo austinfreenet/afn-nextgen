@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export DISPLAY=:0.0
+export DISPLAY=$(w | grep "^$CLIENTUSER" | grep ":[0-9]*" | awk '{ print $2 }')
 export XAUTHORITY=/home/$CLIENTUSER/.Xauthority
 
 while [ $# -gt 0 ]; do
