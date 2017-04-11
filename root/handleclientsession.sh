@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# put our directory in the PATH
+PATH=$(dirname $(realpath $0)):$PATH
+
 export VMNAME="Windows 7"
 export CLIENTUSER="user"
 
