@@ -3,7 +3,7 @@
 # put our directory in the PATH
 PATH=$(dirname $(realpath $0)):$PATH
 
-export VMNAME="Windows 7"
+export VMNAME="Windows 10"
 export CLIENTUSER="user"
 
 # shutdown any existing client session
