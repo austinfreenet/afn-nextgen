@@ -1,6 +1,10 @@
 SHA=$(shell git describe --always)
+TARBALL=afn-nextgen-$(SHA).tar.gz
 
-tarball: afn-nextgen-$(SHA).tar.gz
+tarball: $(TARBALL)
 
-afn-nextgen-$(SHA).tar.gz:
+$(TARBALL):
 	git archive --prefix=afn-nextgen/ -o $@ $(SHA)
+
+upload: $(TARBALL)
+	scp $(TARBALL) baadsvik:~/sandboxes/afn-isconf/images/fattuba.com/
