@@ -4,7 +4,7 @@
 PATH=$(dirname $(realpath $0)):$PATH
 
 export VMNAME="Windows 10"
-export CLIENTUSER="user"
+export CLIENTUSER="client"
 
 # shutdown any existing client session
 if isclientsessionrunning.sh; then
