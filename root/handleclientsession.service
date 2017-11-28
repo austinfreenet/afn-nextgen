@@ -4,7 +4,7 @@ After=systemd-user-sessions.service
 
 [Service]
 Type=simple
-ExecStart=/home/ryan/sandboxes/afn-nextgen/root/handleclientsession.sh
+ExecStart=/opt/afn-nextgen/root/handleclientsession.sh
 StandardOutput=syslog
 StandardError=syslog
 
