@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# put our directory in the PATH
+OURDIR=$(dirname $(realpath $0))
+PATH=$OURDIR:$PATH
+
+source $OURDIR/../env.sh
+
+sudo -u $CLIENTUSER VBoxManage controlvm "$VMNAME" savestate || { echo "couldn't save the VM state" >&2; exit 2; }
+sudo systemctl stop lightdm.service || { echo "couldn't stop lightdm" >&2; exit 2; }
+sudo -u $CLIENTUSER sed -i '/^Session=/d' /home/$CLIENTUSER/.dmrc || { echo "couldn't set default X session to VirtualBox" >&2; exit 2; }
+sudo mv /home/$CLIENTUSER /home/gold/$CLIENTUSER || { echo "couldn't move homedir to gold" >&2; exit 2; }
+sudo mv /home/${CLIENUSER}_ootw /home/$CLIENTUSER || { echo "couldn't move overlay in place" >&2; exit 2; }
+sudo systemctl start handleclientsession.service || { echo "couldn't start handleclientsession" >&2; exit 2; }

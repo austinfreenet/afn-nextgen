@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# put our directory in the PATH
+OURDIR=$(dirname $(realpath $0))
+PATH=$OURDIR:$PATH
+
+source $OURDIR/../env.sh
+
+sudo systemctl stop handleclientsession.service || { echo "couldn't stop handleclientsession" >&2; exit 2; }
+sudo systemctl stop lightdm.service || { echo "couldn't stop lightdm" >&2; exit 2; }
+sudo pkill -u $CLIENTUSER
+sudo umount /home/$CLIENTUSER || { echo "couldn't unmount homedir" >&2; exit 2; }
+sudo mv /home/$CLIENTUSER /home/${CLIENTUSER}_ootw || { echo "couldn't move overlay out of the way" >&2; exit 2; }
+sudo mv /home/gold/$CLIENTUSER /home/$CLIENTUSER || { echo "couldn't move gold homedir in place" >&2; exit 2; }
+sudo -u $CLIENTUSER sed -i '/^Language.*/a Session=xfce' /home/$CLIENTUSER/.dmrc || { echo "couldn't set default X session to XFCE" >&2; exit 2; }
+sudo systemctl start lightdm.service || { echo "couldn't start lightdm" >&2; exit 2; }
+
+echo "Hit Ctrl-Alt-F7 and make any changes to the VM you want"

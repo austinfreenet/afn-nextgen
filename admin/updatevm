@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# put our directory in the PATH
+OURDIR=$(dirname $(realpath $0))
+PATH=$OURDIR:$PATH
+
+source $OURDIR/../env.sh
+
+prepforvmupdate
+donewithupdate
+finishvmupdate

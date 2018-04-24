@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # put our directory in the PATH
-PATH=$(dirname $(realpath $0)):$PATH
+OURDIR=$(dirname $(realpath $0))
+PATH=$OURDIR:$PATH
 
-export VMNAME="Windows 10"
-export CLIENTUSER="client"
+source $OURDIR/../env.sh
 
 # shutdown any existing client session
 if isclientsessionrunning.sh; then

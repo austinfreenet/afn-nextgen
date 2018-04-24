@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# put our directory in the PATH
+OURDIR=$(dirname $(realpath $0))
+PATH=$OURDIR:$PATH
+
+source $OURDIR/../env.sh
+
+REPLY=""
+while [ "$REPLY" != "DONE" ]; do
+	echo -n "Type DONE when you're finished: "
+	read
+done
+
+REPLY=""
+while [ "$REPLY" != "YES" ]; do
+	echo -n "Did you create a new snapshot?  Type YES if you did: "
+	read
+done
+
+while ! sudo -u $CLIENTUSER VBoxManage list runningvms | grep "$VMNAME" > /dev/null; do
+	echo -n "Is looks like the VM isn't running. Start it, then press Enter: "
+	read
+done
+
+REPLY=""
+while [ "$REPLY" != "YES" ]; do
+	echo -n "Is the VM running in fullscreen mode?  Type YES if so: "
+	read
+done
