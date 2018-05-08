@@ -7,7 +7,11 @@ PATH=$OURDIR:$PATH
 source $OURDIR/../env.sh
 
 sudo -u $CLIENTUSER VBoxManage controlvm "$VMNAME" savestate || { echo "couldn't save the VM state" >&2; exit 2; }
+echo "Waiting for savestate"
+while ps -aef | grep "VirtualBox.*$VMNAME" | grep -v grep > /dev/null; do sleep 1; done
 sudo systemctl stop lightdm.service || { echo "couldn't stop lightdm" >&2; exit 2; }
+echo "Waiting for lightdm to stop"
+while ps -aef | grep "lightdm" | grep -v grep > /dev/null; do sleep 1; done
 sudo -u $CLIENTUSER sed -i '/^Session=/d' /home/$CLIENTUSER/.dmrc || { echo "couldn't set default X session to VirtualBox" >&2; exit 2; }
 sudo mv /home/$CLIENTUSER /home/gold/$CLIENTUSER || { echo "couldn't move homedir to gold" >&2; exit 2; }
 sudo mv /home/${CLIENTUSER}_ootw /home/$CLIENTUSER || { echo "couldn't move overlay in place" >&2; exit 2; }

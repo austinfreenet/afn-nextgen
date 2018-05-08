@@ -6,6 +6,6 @@ PATH=$OURDIR:$PATH
 
 source $OURDIR/../env.sh
 
-prepforvmupdate
-donewithupdate
-finishvmupdate
+prepvmforupdate || { echo "Prep failed" >&2; exit 1; }
+donewithupdate || { echo "Finalize failed" >&2; exit 1; }
+finishvmupdate || { echo "Finish failed" >&2; exit 1; }
